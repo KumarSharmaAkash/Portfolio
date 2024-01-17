@@ -17,15 +17,14 @@ export default async function Page({ params }: { params: Params }) {
     .catch(() => notFound());
 
 
-    function formatDate(date:DateField){
-      if(isFilled.date(date)){
-        const date= new Date(page.data.date);
-         const dateOptions: Intl.DateTimeFormatOptions={
-         year: 'numeric',
-         month: 'long',
-        day: 'numeric',
-        weekday:'long',
-    };
+    function formatDate(date: DateField) {
+      if (isFilled.date(date) && page.data.date !== null) {
+        const parsedDate = new Date(page.data.date);
+        const dateOptions: Intl.DateTimeFormatOptions = {
+          year: 'numeric',
+          month: 'long',
+          // Add more options as needed
+        };
     return new Intl.DateTimeFormat('en-US',dateOptions).format(new Date(date));
 
       }
